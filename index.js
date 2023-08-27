@@ -14,11 +14,11 @@ io.on('connection', (socket)=> {
         console.log("User joined in a room : " + roomId);
     })
 
-    socket.on("screen-data", function(data) {
+    socket.on("screen-data",async function(data) {
         data = JSON.parse(data);
         var room = data.room;
         var imgStr = data.image;
-        socket.broadcast.to(room).emit('screen-data', imgStr);
+        await socket.broadcast.to(room).emit('screen-data', imgStr);
     })
 
 
